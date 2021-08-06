@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"strconv"
 )
 
@@ -34,5 +35,5 @@ func ToString(any interface{}) string {
 
 func main() {
 	var i interface{}
-	ToString(i)
+	fmt.Println(ToString(i))
 }
