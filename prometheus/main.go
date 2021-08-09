@@ -77,7 +77,7 @@ func init() {
 	prometheus.MustRegister(rpcDurationsHistogram)
 
 	// Add Go module build info.
-	// Obs.: the function called in the example, using the Prometheus package, was deprecated.
+	// Obs.: the function called in the referenced link, use Prometheus package, was deprecated.
 	prometheus.MustRegister(collectors.NewBuildInfoCollector())
 }
 
