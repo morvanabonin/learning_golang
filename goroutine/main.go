@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-// Teste based on this article
+// Test based on this article
 // https://golangbot.com/goroutines
 
 func hello() {
