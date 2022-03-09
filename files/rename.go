@@ -23,7 +23,16 @@ func main() {
 	fmt.Println(src)
 	fmt.Println(dst)
 
+	// ext := filepath.Ext(dst)
+	// fmt.Println("ext", ext)
+
+	// bkp := strings.TrimSuffix(dst, ext) + "_bkb" + ext
+
+	// fmt.Println("TrimSuffix", strings.TrimSuffix(dst, ext))
+
 	os.OpenFile(dst, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0755)
+
+	// copy(dst, bkp)
 
 	copy(src, dst)
 
