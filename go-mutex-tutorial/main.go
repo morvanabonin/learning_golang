@@ -9,6 +9,7 @@ package main
 import (
 	"fmt"
 	"sync"
+	"reflect"
 )
 
 var (
@@ -16,21 +17,34 @@ var (
 	balance int
 )
 
+const mutexLocked = 1
+
 func deposit(value int, wg *sync.WaitGroup) {
+	fmt.Println("mutex locked =", MutexLocked(&mutex))
 	mutex.Lock()
+	fmt.Println("mutex locked =", MutexLocked(&mutex))
 	fmt.Printf("Depositing %d to account with balance %d\n", value, balance)
 	balance += value
 	mutex.Unlock()
+	fmt.Println("mutex locked =", MutexLocked(&mutex))
 	wg.Done()
 
 }
 
 func withdraw(value int, wg *sync.WaitGroup) {
+	fmt.Println("mutex locked =", MutexLocked(&mutex))
 	mutex.Lock()
+	fmt.Println("mutex locked =", MutexLocked(&mutex))
 	fmt.Printf("Withdrawing %d from account with balance %d\n", value, balance)
 	balance -= value
 	mutex.Unlock()
+	fmt.Println("mutex locked =", MutexLocked(&mutex))
 	wg.Done()
+}
+
+func MutexLocked(m *sync.Mutex) bool {
+    state := reflect.ValueOf(m).Elem().FieldByName("state")
+    return state.Int()&mutexLocked == mutexLocked
 }
 
 func main() {
